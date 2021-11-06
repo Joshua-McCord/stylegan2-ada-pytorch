@@ -430,6 +430,6 @@ class AugmentPipe(torch.nn.Module):
             images = images * mask
             
         
-        return torch.cat((images, clean_images))
+        return torch.cat((clean_images,images))
 
 #----------------------------------------------------------------------------
