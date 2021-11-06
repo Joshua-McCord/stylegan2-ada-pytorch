@@ -179,6 +179,9 @@ class AugmentPipe(torch.nn.Module):
         self.register_buffer('Hz_fbank', torch.as_tensor(Hz_fbank, dtype=torch.float32))
 
     def forward(self, images, debug_percentile=None):
+        aug_images = images[:50]
+        clean_images = images[50:]
+        images = aug_images
         assert isinstance(images, torch.Tensor) and images.ndim == 4
         batch_size, num_channels, height, width = images.shape
         device = images.device
@@ -425,7 +428,8 @@ class AugmentPipe(torch.nn.Module):
             mask_y = (((coord_y + 0.5) / height - center[:, 1]).abs() >= size[:, 1] / 2)
             mask = torch.logical_or(mask_x, mask_y).to(torch.float32)
             images = images * mask
-
-        return images
+            
+        
+        return torch.cat((images, clean_images))
 
 #----------------------------------------------------------------------------
