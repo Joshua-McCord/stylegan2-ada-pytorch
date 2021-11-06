@@ -179,8 +179,8 @@ class AugmentPipe(torch.nn.Module):
         self.register_buffer('Hz_fbank', torch.as_tensor(Hz_fbank, dtype=torch.float32))
 
     def forward(self, images, debug_percentile=None):
-        aug_images = images[:50]
-        clean_images = images[50:]
+        aug_images = images[:399]
+        clean_images = images[400:]
         images = aug_images
         assert isinstance(images, torch.Tensor) and images.ndim == 4
         batch_size, num_channels, height, width = images.shape
