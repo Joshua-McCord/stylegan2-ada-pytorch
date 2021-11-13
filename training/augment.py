@@ -227,8 +227,10 @@ class AugmentPipe(torch.nn.Module):
         self.register_buffer('Hz_fbank', torch.as_tensor(
             Hz_fbank, dtype=torch.float32))
 
+        self.aug_cnt = 0
+
     def forward(self, images, debug_percentile=None):
-        print("Augmenting")
+        print(f'Augmenting_{self.aug_cnt}')
         # images[0->399] ('aug' folder is first: will be first 400)
         aug_images = images[:400]
         # images[400->n-1] ('clean' folder is second: will be last 400)
