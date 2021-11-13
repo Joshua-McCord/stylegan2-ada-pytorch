@@ -231,6 +231,7 @@ class AugmentPipe(torch.nn.Module):
 
     def forward(self, images, debug_percentile=None):
         print(f'Augmenting_{self.aug_cnt}')
+        self.aug_cnt += 1
         # images[0->399] ('aug' folder is first: will be first 400)
         aug_images = images[:400]
         # images[400->n-1] ('clean' folder is second: will be last 400)
