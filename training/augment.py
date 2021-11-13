@@ -230,8 +230,6 @@ class AugmentPipe(torch.nn.Module):
         self.aug_cnt = 0
 
     def forward(self, images, debug_percentile=None):
-        print(f'Augmenting_{self.aug_cnt}')
-        print(f'Image Size {len(images)}')
         self.aug_cnt += 1
         # images[0->399] ('aug' folder is first: will be first 400)
         aug_images = images[:400]
@@ -240,6 +238,10 @@ class AugmentPipe(torch.nn.Module):
 
         images = aug_images
         assert isinstance(images, torch.Tensor) and images.ndim == 4
+        print(f'Images Dim 0 Size = {images.size(dim=0)}')
+        print(f'Images Dim 1 Size = {images.size(dim=1)}')
+        print(f'Images Dim 2 Size = {images.size(dim=2)}')
+        print(f'Images Dim 3 Size = {images.size(dim=3)}')
         batch_size, num_channels, height, width = images.shape
         device = images.device
         if debug_percentile is not None:
