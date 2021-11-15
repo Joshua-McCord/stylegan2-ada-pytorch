@@ -242,7 +242,7 @@ class AugmentPipe(torch.nn.Module):
         # print(f'Images Dim 1 Size = {images.size(dim=1)}')
         # print(f'Images Dim 2 Size = {images.size(dim=2)}')
         # print(f'Images Dim 3 Size = {images.size(dim=3)}')
-        print(images[0])
+        print(f'Augment Cnt = {self.aug_cnt}')
         batch_size, num_channels, height, width = images.shape
         device = images.device
         if debug_percentile is not None:
